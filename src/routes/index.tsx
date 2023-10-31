@@ -4,6 +4,7 @@ import About from "../pages/About";
 import Contact from "../pages/Contact";
 import Detail from "../pages/Detail";
 import { createBrowserRouter } from "react-router-dom";
+import FilmManagement from "../pages/FilmManagement";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -24,6 +25,14 @@ export const router = createBrowserRouter([
       {
         path: "details/:slug",
         element: <Detail />,
+      },
+      {
+        path: "manageFilms",
+        element: <FilmManagement />,
+      },
+      {
+        path: "*",
+        element: <Home />,
       },
     ],
   },

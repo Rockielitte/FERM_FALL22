@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import defautPoster from "../assets/defaultPoster.jpg";
+// import defautPoster from "../assets/defaultPoster.jpg";
 import { ImCross } from "react-icons/im";
 import { useNavigate } from "react-router-dom";
-
-const MovieCard = ({ data }) => {
+import { Film } from "../types";
+type Props = {
+  data: Film;
+};
+const MovieCard = ({ data }: Props) => {
   const [isShow, setIsShow] = useState(false);
   const navigate = useNavigate();
   return (
@@ -15,18 +18,18 @@ const MovieCard = ({ data }) => {
         />
       </div>
       <div className="md:w-2/5 w-full bg-slate-900  flex flex-col px-4 py-2 bg-color-333 h-full">
-        <h3 class="font-bold text-4xl md:text-2xl lg:text-2xl text-gray-200 ">
+        <h3 className="font-bold text-4xl md:text-2xl lg:text-2xl text-gray-200 ">
           {data.title}
         </h3>
-        <span class="text-xl lg:text-sm lg:mb-4">{data.year}</span>
-        <div class=" flex-1 overflow-hidden ">
-          <p class="text-sm text-gray-100 leading-snug truncate-overflow h-3/5 overflow-y-auto ">
+        <span className="text-xl lg:text-sm lg:mb-4">{data.year}</span>
+        <div className=" flex-1 overflow-hidden ">
+          <p className="text-sm text-gray-100 leading-snug truncate-overflow h-3/5 overflow-y-auto ">
             {data.extract}
           </p>
         </div>
-        <div class="button-container flex justify-between mb-4 ">
+        <div className="button-container flex justify-between mb-4 ">
           <button
-            class="text-lg mr-4 lg:text-sm text-gray-200 "
+            className="text-lg mr-4 lg:text-sm text-gray-200 "
             onClick={() => {
               setIsShow(true);
             }}
@@ -34,9 +37,9 @@ const MovieCard = ({ data }) => {
             Trailer
           </button>
           <button
-            class="text-lg lg:text-sm font-bold py-2 px-4 rounded bg-orange-200 text-orange-700"
+            className="text-lg lg:text-sm font-bold py-2 px-4 rounded bg-orange-200 text-orange-700"
             onClick={() => {
-              navigate(`/details/${data.href}`);
+              navigate(`/details/${data.id}`);
             }}
           >
             Detail
@@ -56,14 +59,13 @@ const MovieCard = ({ data }) => {
               width="560"
               height="315"
               src={
-                data.videoUrl
-                  ? data.videoUrl
-                  : "https://www.youtube.com/embed/Z5xGIsfQDVM?si=sAMJFZ7gxq5J6Jrj"
+                data.videoUrl ||
+                "https://www.youtube.com/embed/rrGMENN1iaY?si=ubUTEeTjrdY9vGQw"
               }
               title="YouTube video player"
-              frameborder="0"
+              // frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
+              allowFullScreen
             ></iframe>
           </div>
         </div>
